@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import { orderServices } from "./order.services";
 import { TOrderValidationSchema } from "./order.validation";
 import Product from "../product/product.model";
+import { TProduct } from "../product/product.interface";
 
-import { TProduct } from '../product/product.interface';
 
 const  createOrder =async (req:Request,res:Response)=>{
 try {
@@ -22,7 +22,7 @@ try {
 console.log(validatedOrderData.productId);
 
 const product = await Product.findById(validatedOrderData.productId);
-const y= product;
+const y = product;
     console.log('pro',y);
 
         // Check if product exists
@@ -31,15 +31,16 @@ const y= product;
         }
 
         // Check available quantity in inventory
-        if (y.inventory?.quantity < validatedOrderData.quantity) {
+        if (y.inventory?.quantity as number < validatedOrderData.quantity) {
             return res.status(400).json({ success: false, message: "Insufficient quantity available in inventory" });
         }
 
         // Deduct ordered quantity from inventory
-        y.inventory.quantity -= validatedOrderData.quantity;
+    
+         y.inventory?.quantity   -= validatedOrderData.quantity;
 
         // Update inStock status based on remaining quantity
-        y.inventory.inStock = y.inventory?.quantity > 0;
+        y.inventory?.inStock = y.inventory?.quantity as number > 0;
 
         // Save updated product in database
         await y.save();
