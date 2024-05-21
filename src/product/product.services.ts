@@ -9,11 +9,11 @@ const createProductIntoDB = async (productData: TProduct) => {
 
     return result;
   };
-const getAllProductIntoDB = async()=>{
+ const getAllProductIntoDB = async()=>{
 
-  const result = await Product.find();
-  return result;
-}
+   const result = await Product.find();
+   return result;
+ }
 const getSingleProductFromDB =async (productId:string)=>{
   
 const result = await Product.findById({_id:productId})
@@ -45,10 +45,10 @@ const searchProductsFromDB =async (searchTerm :string)=>{
  
  
   }
-
+ 
   export const productServices={
     createProductIntoDB,
-    getAllProductIntoDB,
+     getAllProductIntoDB,
     getSingleProductFromDB,
      updateProductFromDB,
      deleteProductFromDB,

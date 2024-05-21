@@ -14,8 +14,8 @@ export type TInventory = {
     name: string;
     description: string;
     price: number;
-    category: string;
-    tags: string[];
-    variants: TVariant[];
+    category: string[];
+    tags:string[];
+    variants: TVariant;
     inventory: TInventory;
 };

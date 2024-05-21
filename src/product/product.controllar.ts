@@ -1,13 +1,11 @@
 import { Request, Response } from "express"
 import { productServices } from "./product.services"
 import { TProductValidationSchema } from "./product.validation";
-
-
 const getsearchProductsFromDB =async( req:Request,res:Response)=>{
     try {
         const searchTerm= req.query.searchTerm
         console.log(searchTerm);
-        const result = await productServices.searchProductsFromDB(searchTerm)
+        const result = await productServices.searchProductsFromDB(searchTerm as string)
         
         if(result.length === 0){
             res.status(200).json({ 
@@ -17,6 +15,14 @@ const getsearchProductsFromDB =async( req:Request,res:Response)=>{
               });
             return;
         }
+if (!searchTerm) {
+    res.status(200).json({ 
+        success: true,
+        message: `Products fetched successfully!`,
+        data: result,
+      });
+}
+
         res.status(200).json({ 
             success: true,
             message: `Products matching search term ${searchTerm} fetched successfully!`,
@@ -34,7 +40,7 @@ const createProduct =async(req:Request,res:Response)=>{
     try {
         const product =req.body
         const validatedData = TProductValidationSchema.parse(product);
-        const result =await productServices.createProductIntoDB(validatedData)
+        const result =await productServices.createProductIntoDB(validatedData )
         res.status(200).json({
             success: true,
             message: 'product is created succesfully',
@@ -49,23 +55,23 @@ const createProduct =async(req:Request,res:Response)=>{
     }
     }
 
-const getAllProduct =async(req:Request,res:Response)=>{
+ const getAllProduct =async(req:Request,res:Response)=>{
 
-    try {
+     try {
        
-        const result = await productServices.getAllProductIntoDB()
+         const result = await productServices.getAllProductIntoDB()
         res.status(200).json({
-            success: true,
-            message: "Products fetched successfully!",
+             success: true,
+             message: "Products fetched successfully!",
             data: result,
-          });
-    } catch (error) {
-        res.status(500).json({
+           });
+     } catch (error) {
+         res.status(500).json({
             success:false,
-            message: 'somthing went worng',
-            error: error,
-          }); 
-    }
+             message: 'somthing went worng',
+             error: error,
+           }); 
+     }
 
 }
 
@@ -135,7 +141,7 @@ const deleteProduct =async( req:Request,res:Response)=>{
 
     export const productControllers ={
         createProduct,
-        getAllProduct,
+         getAllProduct,
         getSingleProduct,
         updateProduct,
         deleteProduct,
