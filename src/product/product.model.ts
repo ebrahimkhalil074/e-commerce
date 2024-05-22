@@ -14,14 +14,23 @@ const TInventorySchema = new Schema({
 });
 
 // Define the TProduct schema
+// const TProductSchema = new Schema({
+//     name: { type: String, required: true },
+//     description: { type: String, required: true },
+//     price: { type: Number, required: true },
+//     category: { type: String, required: true },
+//     tags: [{ type: String }],
+//     variants: [TVariantSchema],
+//     inventory: TInventorySchema
+// });
 const TProductSchema = new Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
-    category: { type: String, required: true },
-    tags: [{ type: String }],
-    variants: [TVariantSchema],
-    inventory: TInventorySchema
+    category: { type: [String], required: true },
+    tags: { type: [String], required: false },
+    variants: { type: [TVariantSchema], required: true },
+    inventory: { type: TInventorySchema, required: true },
 });
 
 // Create and export the model

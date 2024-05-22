@@ -17,7 +17,7 @@ const TProductValidationSchema = z.object({
     name: z.string().max(100, { message: 'Name must be at most 100 characters long' }),
     description: z.string().max(500, { message: 'Description must be at most 500 characters long' }),
     price: z.number().positive({ message: 'Price must be a positive number' }),
-    category:z.array(z.string()).max(50, { message: 'Category must be at most 50 characters long' }),
+    category:z.string().max(50, { message: 'Category must be at most 50 characters long' }),
     tags: z.array(z.string()).optional(),
     variants: z.array(TVariantValidationSchema),
     inventory: TInventoryValidationSchema
