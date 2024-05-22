@@ -13,7 +13,6 @@ const TInventorySchema = new Schema({
     inStock: { type: Boolean, required: true }
 });
 
-// Define the TProduct schema
 // const TProductSchema = new Schema({
 //     name: { type: String, required: true },
 //     description: { type: String, required: true },
