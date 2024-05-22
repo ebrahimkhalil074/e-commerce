@@ -9,6 +9,8 @@ const app :Application = express()
 // parser
 app.use(express.json())
 app.use(cors());
+
+
 app.use('/api', productRoutes);
 app.use('/api', orderRoutes);
 
