@@ -18,10 +18,10 @@ const createProductIntoDB = (productData) => __awaiter(void 0, void 0, void 0, f
     const result = yield product_model_1.default.create(productData);
     return result;
 });
-const getAllProductIntoDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield product_model_1.default.find();
-    return result;
-});
+//  const getAllProductIntoDB = async()=>{
+//    const result = await Product.find();
+//    return result;
+//  }
 const getSingleProductFromDB = (productId) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield product_model_1.default.findById({ _id: productId });
     return result;
@@ -48,7 +48,7 @@ const searchProductsFromDB = (searchTerm) => __awaiter(void 0, void 0, void 0, f
 });
 exports.productServices = {
     createProductIntoDB,
-    getAllProductIntoDB,
+    //  getAllProductIntoDB,
     getSingleProductFromDB,
     updateProductFromDB,
     deleteProductFromDB,

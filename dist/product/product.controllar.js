@@ -65,23 +65,22 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
-const getAllProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const result = yield product_services_1.productServices.getAllProductIntoDB();
-        res.status(200).json({
-            success: true,
-            message: "Products fetched successfully!",
-            data: result,
-        });
-    }
-    catch (error) {
-        res.status(500).json({
-            success: false,
-            message: 'somthing went worng',
-            error: error,
-        });
-    }
-});
+//  const getAllProduct =async(req:Request,res:Response)=>{
+//      try {
+//          const result = await productServices.getAllProductIntoDB()
+//         res.status(200).json({
+//              success: true,
+//              message: "Products fetched successfully!",
+//             data: result,
+//            });
+//      } catch (error) {
+//          res.status(500).json({
+//             success:false,
+//              message: 'somthing went worng',
+//              error: error,
+//            }); 
+//      }
+// }
 const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { productId } = req.params;
@@ -142,7 +141,7 @@ const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 });
 exports.productControllers = {
     createProduct,
-    getAllProduct,
+    //  getAllProduct,
     getSingleProduct,
     updateProduct,
     deleteProduct,

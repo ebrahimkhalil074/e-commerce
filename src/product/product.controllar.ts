@@ -56,25 +56,25 @@ const createProduct =async(req:Request,res:Response)=>{
     }
     }
 
- const getAllProduct =async(req:Request,res:Response)=>{
+//  const getAllProduct =async(req:Request,res:Response)=>{
 
-     try {
+//      try {
        
-         const result = await productServices.getAllProductIntoDB()
-        res.status(200).json({
-             success: true,
-             message: "Products fetched successfully!",
-            data: result,
-           });
-     } catch (error) {
-         res.status(500).json({
-            success:false,
-             message: 'somthing went worng',
-             error: error,
-           }); 
-     }
+//          const result = await productServices.getAllProductIntoDB()
+//         res.status(200).json({
+//              success: true,
+//              message: "Products fetched successfully!",
+//             data: result,
+//            });
+//      } catch (error) {
+//          res.status(500).json({
+//             success:false,
+//              message: 'somthing went worng',
+//              error: error,
+//            }); 
+//      }
 
-}
+// }
 
 const getSingleProduct =async( req:Request,res:Response)=>{
 try {
@@ -142,7 +142,7 @@ const deleteProduct =async( req:Request,res:Response)=>{
 
     export const productControllers ={
         createProduct,
-         getAllProduct,
+        //  getAllProduct,
         getSingleProduct,
         updateProduct,
         deleteProduct,

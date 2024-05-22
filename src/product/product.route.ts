@@ -7,7 +7,7 @@ router.get('/products',productControllers.getsearchProductsFromDB)
 router.post('/products',productControllers.createProduct)
 
 
- router.get('/products',productControllers.getAllProduct)
+//  router.get('/products',productControllers.getAllProduct)
 
 router.get('/products/:productId',productControllers.getSingleProduct);
 
