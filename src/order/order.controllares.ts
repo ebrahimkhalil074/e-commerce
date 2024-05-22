@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { orderServices } from "./order.services";
 import { TOrderValidationSchema } from "./order.validation";
 import Product from "../product/product.model";
-import { TProduct } from "../product/product.interface";
+
 
 
 const  createOrder =async (req:Request,res:Response)=>{
