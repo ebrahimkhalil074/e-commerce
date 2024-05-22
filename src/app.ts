@@ -1,12 +1,13 @@
-import express from'express'
+import express, { Application } from'express'
+import cors from 'cors'
 import { productRoutes } from './product/product.route';
 import { orderRoutes } from './order/order.route';
 import  { Request, Response, NextFunction } from 'express';
-const app = express()
+const app :Application = express()
 
 // parser
 app.use(express.json())
-
+app.use(cors());
 app.use('/api', productRoutes);
 app.use('/api', orderRoutes);
 
