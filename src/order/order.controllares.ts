@@ -29,18 +29,20 @@ const y = product;
         if (!y) {
             return res.status(404).json({ success: false, message: "Product not found" });
         }
-
+        if (!y.inventory) {
+            return res.status(400).json({ success: false, message: "Inventory data not available" });
+          }
+          
         // Check available quantity in inventory
         if (y.inventory?.quantity as number < validatedOrderData.quantity) {
             return res.status(400).json({ success: false, message: "Insufficient quantity available in inventory" });
         }
 
         // Deduct ordered quantity from inventory
-    
-         y.inventory?.quantity   -= validatedOrderData.quantity;
+        y.inventory.quantity -= validatedOrderData.quantity;
 
         // Update inStock status based on remaining quantity
-        y.inventory?.inStock = y.inventory?.quantity as number > 0;
+        y.inventory.inStock = y.inventory?.quantity as number > 0;
 
         // Save updated product in database
         await y.save();

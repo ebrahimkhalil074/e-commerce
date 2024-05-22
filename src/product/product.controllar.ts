@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { productServices } from "./product.services"
 import { TProductValidationSchema } from "./product.validation";
+import { TProduct } from "./product.interface";
 const getsearchProductsFromDB =async( req:Request,res:Response)=>{
     try {
         const searchTerm= req.query.searchTerm
@@ -34,12 +35,12 @@ if (!searchTerm) {
             message: 'somthing went worng',
             error: error,
           });
-    }
+    } 
     }
 const createProduct =async(req:Request,res:Response)=>{
     try {
         const product =req.body
-        const validatedData = TProductValidationSchema.parse(product);
+        const validatedData :TProduct = TProductValidationSchema.parse(product);
         const result =await productServices.createProductIntoDB(validatedData )
         res.status(200).json({
             success: true,
